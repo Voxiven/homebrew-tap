@@ -28,10 +28,10 @@ class Dotsync < Formula
 
   depends_on "fswatch"
   depends_on "jq"
-  depends_on "magic-wormhole"
-  depends_on "syncthing"
   # Linux support is on the roadmap; remove this line once it lands.
   depends_on :macos
+  depends_on "magic-wormhole"
+  depends_on "syncthing"
 
   def install
     # Stage everything under the formula's prefix.
