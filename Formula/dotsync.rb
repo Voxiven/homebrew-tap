@@ -34,14 +34,14 @@ class Dotsync < Formula
   depends_on "syncthing"
 
   def install
-    # Stage everything under the formula's prefix.
-    prefix.install Dir["bin", "profiles", "launchd", "docs", "examples",
-                       "README.md", "LICENSE"]
+    # Everything goes to libexec (private; not auto-symlinked into PATH).
+    # We expose only the top-level dispatcher in bin/.
+    libexec.install Dir["*"]
 
-    # Symlink the dispatcher into Homebrew's bin/. The dispatcher resolves
-    # symlinks itself so it locates its sibling dotsync-* scripts in the
-    # cellar correctly.
-    bin.install_symlink prefix/"bin/dotsync"
+    # The dispatcher resolves symlinks portably, so the symlink in bin/
+    # leads back to libexec/bin/dotsync, which finds its sibling
+    # dotsync-* scripts (also in libexec/bin) via SCRIPT_DIR.
+    bin.install_symlink libexec/"bin/dotsync"
   end
 
   def caveats
