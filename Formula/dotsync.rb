@@ -26,12 +26,12 @@ class Dotsync < Formula
   sha256 "dc17688952e5a75ae51a821c8e93345308b7558a8195add83393adb66f5d1aa9"
   license "MIT"
 
-  # Linux support is on the roadmap; remove this line once it lands.
-  depends_on :macos
   depends_on "fswatch"
   depends_on "jq"
   depends_on "magic-wormhole"
   depends_on "syncthing"
+  # Linux support is on the roadmap; remove this line once it lands.
+  depends_on :macos
 
   def install
     # Stage everything under the formula's prefix.
